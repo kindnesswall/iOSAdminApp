@@ -81,16 +81,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITabBarControllerDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        AppLanguage.setLanguage(language: .persian)
-        
-        showTabbar()
-        
-        if uDStandard.bool(forKey: AppConstants.WATCHED_INTRO) {
-            showIntro()
-            uDStandard.set(true, forKey: AppConstants.WATCHED_INTRO)
-        }
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let homeViewController = ActivationEnterPhoneViewController()
+        window!.rootViewController = homeViewController
+        window!.makeKeyAndVisible()
         
         return true
+        
+        
+//        AppLanguage.setLanguage(language: .persian)
+//
+//        showTabbar()
+//
+//        if uDStandard.bool(forKey: AppConstants.WATCHED_INTRO) {
+//            showIntro()
+//            uDStandard.set(true, forKey: AppConstants.WATCHED_INTRO)
+//        }
+//
+//        return true
     }
     
     func showTabbar()  {

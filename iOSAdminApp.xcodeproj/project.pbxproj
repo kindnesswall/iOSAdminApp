@@ -80,6 +80,7 @@
 		5296A37921A4363E00B235FD /* CategoryOptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296A37721A4363E00B235FD /* CategoryOptionsTableViewCell.swift */; };
 		5296A37A21A4363E00B235FD /* CategoryOptionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5296A37821A4363E00B235FD /* CategoryOptionsTableViewCell.xib */; };
 		5296A37C21A436BC00B235FD /* UITableView+RegisterNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296A37B21A436BC00B235FD /* UITableView+RegisterNib.swift */; };
+		5296A37E21A448F000B235FD /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5296A37D21A448F000B235FD /* icomoon.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +159,7 @@
 		5296A37721A4363E00B235FD /* CategoryOptionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryOptionsTableViewCell.swift; sourceTree = "<group>"; };
 		5296A37821A4363E00B235FD /* CategoryOptionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryOptionsTableViewCell.xib; sourceTree = "<group>"; };
 		5296A37B21A436BC00B235FD /* UITableView+RegisterNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+RegisterNib.swift"; sourceTree = "<group>"; };
+		5296A37D21A448F000B235FD /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = icomoon.ttf; path = icomoon/fonts/icomoon.ttf; sourceTree = "<group>"; };
 		B9DDB3CCB00E38D525980419 /* Pods-iOSAdminApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSAdminApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSAdminApp/Pods-iOSAdminApp.release.xcconfig"; sourceTree = "<group>"; };
 		D4B3682ABAA089FCC68E8733 /* Pods-iOSAdminApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSAdminApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSAdminApp/Pods-iOSAdminApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -334,6 +336,7 @@
 		5296A31121A41AD900B235FD /* font */ = {
 			isa = PBXGroup;
 			children = (
+				5296A37D21A448F000B235FD /* icomoon.ttf */,
 				5296A31721A41AFE00B235FD /* IRANSansMobile_Black.ttf */,
 				5296A31321A41AFD00B235FD /* IRANSansMobile_Bold.ttf */,
 				5296A31421A41AFE00B235FD /* IRANSansMobile_Light.ttf */,
@@ -532,6 +535,7 @@
 				5296A2CC21A40C2A00B235FD /* Main.storyboard in Resources */,
 				5296A36021A4307200B235FD /* UploadImageView.xib in Resources */,
 				5296A36A21A4318A00B235FD /* OptionsListViewController.xib in Resources */,
+				5296A37E21A448F000B235FD /* icomoon.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

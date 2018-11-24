@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class HomeViewController: UIViewController {
 
@@ -28,8 +29,8 @@ class HomeViewController: UIViewController {
     var categotyBarBtn:UIBarButtonItem?
     var cityBarBtn:UIBarButtonItem?
     
-    
-    
+    let keychain = KeychainSwift()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,6 +58,7 @@ class HomeViewController: UIViewController {
         refreshControl.tintColor=AppColor.tintColor
         self.tableview.addSubview(refreshControl)
     }
+    
     @objc func refreshControlAction(){
         reloadPage()
         self.initialLoadingIndicator?.stopLoading()
@@ -97,6 +99,10 @@ class HomeViewController: UIViewController {
     }
     
     @objc func cityFilterBtnClicked(){
+        self.keychain.clear()
+        AppDelegate.me().showLoginVC()
+        
+//        self?.keychain
         
 //        let controller=OptionsListViewController()
 //        controller.option = OptionsListViewController.Option.city(showRegion: false)

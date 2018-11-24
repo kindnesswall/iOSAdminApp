@@ -32,14 +32,14 @@ class ActivationEnterVerifyCodeViewController: UIViewController {
     @IBOutlet weak var registerLoading: UIActivityIndicatorView!
     
     
-    var closeComplition:(()->Void)?
-    
-    func setCloseComplition(closeComplition: (()->Void)? ) {
-        self.closeComplition = closeComplition
-    }
-    
+//    var closeComplition:(()->Void)?
+//
+//    func setCloseComplition(closeComplition: (()->Void)? ) {
+//        self.closeComplition = closeComplition
+//    }
+//
     var submitComplition:((String)->Void)?
-    
+
     func setSubmitComplition(submitComplition:((String)->Void)?){
         self.submitComplition=submitComplition
     }
@@ -91,13 +91,13 @@ class ActivationEnterVerifyCodeViewController: UIViewController {
         //        self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationItem.title=AppLiteral.login
         self.navigationItem.removeDefaultBackBtn()
-        self.navigationItem.setRightBtn(target: self, action: #selector(self.exitBtnAction), text: "", font: AppFont.getIcomoonFont(size: 24))
+//        self.navigationItem.setRightBtn(target: self, action: #selector(self.exitBtnAction), text: "", font: AppFont.getIcomoonFont(size: 24))
     }
     
-    @objc func exitBtnAction(){
-        self.closeComplition?()
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @objc func exitBtnAction(){
+//        self.closeComplition?()
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
     @IBAction func registerBtnClick(_ sender: Any) {
         
@@ -121,11 +121,11 @@ class ActivationEnterVerifyCodeViewController: UIViewController {
         registerBtn.setTitle("", for: [])
         registerLoading.startAnimating()
         
-        ApiMethods.login(mobile: mobile, verificationCode: activationCode) { (data, urlResponse, error) in
+        ApiMethods.login(mobile: mobile, verificationCode: activationCode) { [weak self] (data, urlResponse, error) in
             
             DispatchQueue.main.async {
-                self.registerBtn.setTitle(AppLiteral.registeringActivationCode, for: [])
-                self.registerLoading.stopAnimating()
+                self?.registerBtn.setTitle(AppLiteral.registeringActivationCode, for: [])
+                self?.registerLoading.stopAnimating()
             }
             
             if let response = urlResponse as? HTTPURLResponse {
@@ -149,24 +149,29 @@ class ActivationEnterVerifyCodeViewController: UIViewController {
                 
                 if let userId = reply.userId {
 //                    self.userDefault.set(userId, forKey: AppConstants.USER_ID)
-                    self.keychain.set(userId, forKey: AppConstants.USER_ID)
+                    self?.keychain.set(userId, forKey: AppConstants.USER_ID)
                 }
                 if let userName = reply.userName {
 //                    self.userDefault.set(userName, forKey: AppConstants.USERNAME)
-                    self.keychain.set(userName, forKey: AppConstants.USER_NAME)
+                    self?.keychain.set(userName, forKey: AppConstants.USER_NAME)
                 }
                 if let token = reply.access_token {
 //                    self.userDefault.set(
 //                        AppConstants.BEARER + " " + token, forKey: AppConstants.Authorization)
                     
-                    self.keychain.set(AppConstants.BEARER + " " + token, forKey: AppConstants.Authorization)
+                    self?.keychain.set(AppConstants.BEARER + " " + token, forKey: AppConstants.Authorization)
                 }
-                
-                self.dismiss(animated: true, completion: {
-                    
-                    self.submitComplition?("")
-                    
-                })
+//                self?.submitComplition?("")
+                DispatchQueue.main.async {
+                    AppDelegate.me().showHomeVC()
+//                    self?.navigationController?.popViewController(animated: true)
+                }
+
+//                self?.dismiss(animated: true, completion: {
+//
+//                    
+//
+//                })
                 
             }
             
@@ -229,8 +234,8 @@ class ActivationEnterVerifyCodeViewController: UIViewController {
             let controller=ActivationEnterVerifyCodeViewController(nibName: "ActivationEnterVerifyCodeViewController", bundle:
                 Bundle(for: ActivationEnterVerifyCodeViewController.self))
             
-            controller.setCloseComplition(closeComplition: self.closeComplition)
-            controller.setSubmitComplition(submitComplition: self.submitComplition)
+//            controller.setCloseComplition(closeComplition: self.closeComplition)
+//            controller.setSubmitComplition(submitComplition: self.submitComplition)
             
             if mobile != "" {
                 controller.mobile=mobile

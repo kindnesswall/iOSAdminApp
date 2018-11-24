@@ -82,8 +82,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITabBarControllerDelegate
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let homeViewController = ActivationEnterPhoneViewController()
-        window!.rootViewController = homeViewController
+        var viewController:UIViewController!
+        if isLogedInBefore() {
+            viewController = HomeViewController()
+        }else{
+            viewController = ActivationEnterPhoneViewController()
+        }
+        
+        let nc = UINavigationController.init(rootViewController: viewController)
+        window!.rootViewController = nc
         window!.makeKeyAndVisible()
         
         return true
@@ -117,16 +124,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITabBarControllerDelegate
         
     }
     func showLoginVC(){
-        let controller=ActivationEnterPhoneViewController(nibName: "ActivationEnterPhoneViewController", bundle: Bundle(for: ActivationEnterPhoneViewController.self))
-        let nc = UINavigationController.init(rootViewController: controller)
-        self.tabBarController?.present(nc, animated: true, completion: nil)
+//        let controller=ActivationEnterPhoneViewController(nibName: "ActivationEnterPhoneViewController", bundle: Bundle(for: ActivationEnterPhoneViewController.self))
+//        let nc = UINavigationController.init(rootViewController: controller)
+//        self.tabBarController?.present(nc, animated: true, completion: nil)
+//
+        var viewController:UIViewController!
+        //        if isLogedInBefore() {
+//        viewController = HomeViewController()
+        //        }else{
+                    viewController = ActivationEnterPhoneViewController()
+        //        }
+        
+        let nc = UINavigationController.init(rootViewController: viewController)
+        window!.rootViewController = nc
+        window!.makeKeyAndVisible()
     }
     
-    func checkForLogin()->Bool{
+    func showHomeVC() {
+//        window = UIWindow(frame: UIScreen.main.bounds)
+        var viewController:UIViewController!
+//        if isLogedInBefore() {
+            viewController = HomeViewController()
+//        }else{
+//            viewController = ActivationEnterPhoneViewController()
+//        }
+        
+        let nc = UINavigationController.init(rootViewController: viewController)
+        window!.rootViewController = nc
+        window!.makeKeyAndVisible()
+    }
+    
+    func isLogedInBefore()->Bool{
         if let _=keychain.get(AppConstants.Authorization) {
             return true
         }
-        showLoginVC()
         return false
     }
     

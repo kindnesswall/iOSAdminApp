@@ -112,7 +112,7 @@ class GiftDetailViewController: UIViewController {
     }
     
     @IBAction func requestBtnClicked(_ sender: Any) {
-        guard AppDelegate.me().checkForLogin() else {
+        guard AppDelegate.me().isLogedInBefore() else {
             return
         }
     }

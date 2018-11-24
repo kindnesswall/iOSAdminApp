@@ -17,17 +17,17 @@ class ActivationEnterPhoneViewController: UIViewController {
     @IBOutlet weak var registerBtn: UIButton!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     
-    var closeComplition:(()->Void)?
+//    var closeComplition:(()->Void)?
     
-    func setCloseComplition(closeComplition: (()->Void)? ) {
-        self.closeComplition = closeComplition
-    }
+//    func setCloseComplition(closeComplition: (()->Void)? ) {
+//        self.closeComplition = closeComplition
+//    }
     
-    var submitComplition:((String)->Void)?
-    
-    func setSubmitComplition(submitComplition:((String)->Void)?){
-        self.submitComplition=submitComplition
-    }
+//    var submitComplition:((String)->Void)?
+//
+//    func setSubmitComplition(submitComplition:((String)->Void)?){
+//        self.submitComplition=submitComplition
+//    }
     
     
     override func viewDidLoad() {
@@ -67,13 +67,13 @@ class ActivationEnterPhoneViewController: UIViewController {
 //        self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationItem.title=AppLiteral.login
         self.navigationItem.removeDefaultBackBtn()
-        self.navigationItem.setRightBtn(target: self, action: #selector(self.exitBtnAction), text: "", font: AppFont.getIcomoonFont(size: 24))
+//        self.navigationItem.setRightBtn(target: self, action: #selector(self.exitBtnAction), text: "", font: AppFont.getIcomoonFont(size: 24))
     }
     
-    @objc func exitBtnAction(){
-        self.closeComplition?()
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @objc func exitBtnAction(){
+//        self.closeComplition?()
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
     func customizeUIElements() {
         
@@ -105,11 +105,11 @@ class ActivationEnterPhoneViewController: UIViewController {
         registerBtn.setTitle("", for: [])
         loading.startAnimating()
         
-        ApiMethods.register(telephone: mobile) { (data, response, error) in
-            
-            self.registerBtn.setTitle(AppLiteral.sendingActivationCode, for: [])
-            self.loading.stopAnimating()
-            
+        ApiMethods.register(telephone: mobile) { [weak self](data, response, error) in
+
+            self?.registerBtn.setTitle(AppLiteral.sendingActivationCode, for: [])
+            self?.loading.stopAnimating()
+
             if let response = response as? HTTPURLResponse {
                 if response.statusCode < 200 && response.statusCode >= 300 {
                     return
@@ -123,13 +123,16 @@ class ActivationEnterPhoneViewController: UIViewController {
             let controller=ActivationEnterVerifyCodeViewController(nibName: "ActivationEnterVerifyCodeViewController", bundle:
                 Bundle(for: ActivationEnterVerifyCodeViewController.self))
             
-            controller.setCloseComplition(closeComplition: self.closeComplition)
-            controller.setSubmitComplition(submitComplition: self.submitComplition)
-            
+//            controller.setCloseComplition(closeComplition: self.closeComplition)
+            controller.setSubmitComplition(submitComplition: { (str) in
+                print("enter phone number VC!")
+//                self?.navigationController?.popViewController(animated: true)
+            })
+        
             if mobile != "" {
                 controller.mobile=mobile
             }
-            self.navigationController?.pushViewController(controller, animated: true)
+            self?.navigationController?.pushViewController(controller, animated: true)
             
         }
         

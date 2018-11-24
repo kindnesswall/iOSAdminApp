@@ -10,6 +10,8 @@ class AppFont {
         return UIFont(name: "IRANSansMobile-Light", size: size)!
     }
     static func getBoldFont(size:CGFloat)->UIFont {
+//        return UIFont(name: "IRANSansMobile-Light", size: size)!
+
         return UIFont(name: "IRANSansMobile-Bold", size: size)!
     }
     static func getIcomoonFont(size:CGFloat)->UIFont {

@@ -43,8 +43,14 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
+		<string>IRANSansMobile_Bold.ttf</string>
 		<string>IRANSansMobile_Light.ttf</string>
 		<string>icomoon.ttf</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

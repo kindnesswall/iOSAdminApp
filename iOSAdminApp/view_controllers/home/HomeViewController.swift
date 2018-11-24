@@ -228,6 +228,23 @@ extension HomeViewController:UITableViewDataSource{
 }
 
 extension HomeViewController:UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        
+        
+        if editingStyle == .delete {
+            if let id = self.gifts[indexPath.row].id {
+                apiMethods.deleteGift(giftId: id) { (data) in
+                    print("\(id) deleted!")
+                }
+            }
+            self.gifts.remove(at: indexPath.row)
+            self.tableview.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      
         let controller = GiftDetailViewController(nibName: "GiftDetailViewController", bundle: Bundle(for: GiftDetailViewController.self))

@@ -194,7 +194,7 @@ class ApiMethods {
     }
     
     
-    public static func deleteGift(giftId: String,
+    public func deleteGift(giftId: String,
                                   completionHandler:@escaping(Data?)->Void) {
         let mainURL: String = APIURLs.Gift + "/" + giftId
         
@@ -209,7 +209,7 @@ class ApiMethods {
         })
     }
     
-    public static func deleteMyRequest(giftId: String,
+    public func deleteMyRequest(giftId: String,
                                        completionHandler:@escaping(Data?)->Void) {
         let mainURL: String = APIURLs.deleteMyRequest + "/" + giftId
         
